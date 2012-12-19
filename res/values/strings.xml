@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">Pixel Hello World</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="intro">A picture of an Apple should now be showing on the Pixel LED frame\n\nIf no Apple image is showing, then first make sure you have Bluetooth paired the Pixel Frame to your Android device\n\nIn Bluetooth search, look for a device starting with IOIO and then pair with code: 4545</string>
+    
+
+</resources>
