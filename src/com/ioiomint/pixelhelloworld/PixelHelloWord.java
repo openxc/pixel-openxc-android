@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.graphics.Matrix;
 import android.graphics.Bitmap.Config;
 
-public class MainActivity extends IOIOActivity   {
+public class PixelHelloWord extends IOIOActivity   {
 
    	private ioio.lib.api.RgbLedMatrix.Matrix KIND;  //have to do it this way because there is a matrix library conflict
 	private android.graphics.Matrix matrix2;
