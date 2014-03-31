@@ -10,4 +10,18 @@
     android:text="@string/intro"
     android:id="@+id/title"/>
 
+<TextView
+    android:id="@+id/brake_status"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="No Data" 
+    android:textColor="#0099CC"/>
+
+<TextView
+    android:id="@+id/vehicle_speed"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="No speed" 
+    android:textColor="#0099CC"/>
+
 </LinearLayout>
