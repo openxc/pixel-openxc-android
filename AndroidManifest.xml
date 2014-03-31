@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.ioiomint.pixelhelloworld" android:versionCode="10" android:versionName="1.5">
+      package="com.pixelart.openxc.pixelopenxc" android:versionCode="10" android:versionName="1.5">
       
        <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19"/>
    
@@ -13,7 +13,7 @@
           
             <uses-library android:name="com.android.future.usb.accessory" android:required="false" />	
                  
-            <activity android:name=".PixelHelloWord" android:launchMode="singleTask"> 
+            <activity android:name=".PixelOpenXC" android:launchMode="singleTask"> 
                     <intent-filter>
 	                	<action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
 	                	<action android:name="android.intent.action.MAIN" />

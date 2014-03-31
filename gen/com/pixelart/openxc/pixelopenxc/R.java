@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.ioiomint.pixelhelloworld;
+package com.pixelart.openxc.pixelopenxc;
 
 public final class R {
     public static final class attr {
