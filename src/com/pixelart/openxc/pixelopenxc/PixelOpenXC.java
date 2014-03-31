@@ -1,4 +1,4 @@
-package com.ioiomint.pixelhelloworld;
+package com.pixelart.openxc.pixelopenxc;
 
 import ioio.lib.api.exception.ConnectionLostException;
 import ioio.lib.util.BaseIOIOLooper;
@@ -42,7 +42,7 @@ import com.openxc.remote.VehicleServiceException;
 import android.content.pm.PackageManager.NameNotFoundException;
 //import com.openxc.measurements.VehicleSpeed;
 
-public class PixelHelloWord<connectTimer, ConnectTimer> extends IOIOActivity   {
+public class PixelOpenXC<connectTimer, ConnectTimer> extends IOIOActivity   {
 
    	private ioio.lib.api.RgbLedMatrix.Matrix KIND;  //have to do it this way because there is a matrix library conflict
 	private android.graphics.Matrix matrix2;
@@ -349,7 +349,7 @@ public class PixelHelloWord<connectTimer, ConnectTimer> extends IOIOActivity   {
   	VehicleSpeed.Listener mSpeedListener = new VehicleSpeed.Listener() {
 		    public void receive(Measurement measurement) {
 		    	final VehicleSpeed _speed = (VehicleSpeed) measurement;
-		        PixelHelloWord.this.runOnUiThread(new Runnable() {
+		        PixelOpenXC.this.runOnUiThread(new Runnable() {
 		            public void run() {
 		            	speed = _speed.getValue().doubleValue() * 0.621371; //we need to convert km/h to mp/h
 		            	String speedString = String.format("%.1f", speed);	
@@ -364,7 +364,7 @@ public class PixelHelloWord<connectTimer, ConnectTimer> extends IOIOActivity   {
 	BrakePedalStatus.Listener mBrakeListener = new BrakePedalStatus.Listener() {
 	    public void receive(Measurement measurement) {
 	    	final BrakePedalStatus _brakeStatus = (BrakePedalStatus) measurement;
-	        PixelHelloWord.this.runOnUiThread(new Runnable() {
+	        PixelOpenXC.this.runOnUiThread(new Runnable() {
 	            public void run() {
 	            	
 	            	boolean brakesBoolean = _brakeStatus.getValue().booleanValue();
