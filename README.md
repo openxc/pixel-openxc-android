@@ -16,5 +16,5 @@ access any vehicle data.
 
 The three libraries required by the Pixel Project are:
 - IOIOLibAccessory
-- IOIOLibAndroi
+- IOIOLibAndroid
 - IOIOLibBT
