@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Pixel Hello OpenXC</string>
+    <string name="hello_world">Hello Ford</string>
+    <string name="intro">A picture of the OpenXC logo should appear on the board\n\nIf no OpenXC Logo image appears, then first make sure you have Bluetooth paired the Pixel Frame to your Android device\n\nIn Bluetooth search, look for a device starting with IOIO and then pair with code: 4545</string>
+    <string name="OKText">OK</string>   
+    <string name="notFoundString">PIXEL Not Found</string>   
+	<string name="bluetoothPairingString">Please ensure Bluetooth pairing has been completed prior. The Bluetooth pairing code is: 4545."</string> 
+    <string name="matrix_default_value">3</string> 
+    <string name="selected_matrix">selected_matrix</string>
+    
+</resources>
