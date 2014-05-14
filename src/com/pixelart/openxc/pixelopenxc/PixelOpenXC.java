@@ -95,15 +95,7 @@ public class PixelOpenXC<connectTimer, ConnectTimer> extends IOIOActivity   {
             Intent intent = new Intent(this, VehicleManager.class);
             bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
         }
-        
-        connectTimer = new ConnectTimer(30000,5000); //pop up a message if PIXEL is not found within 30 seconds
- 		connectTimer.start(); 
-//		try {
-//			clearMatrixImage();
-//		} catch (ConnectionLostException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
  		resources = this.getResources();
  		setPreferences();
  		
@@ -235,12 +227,7 @@ public class PixelOpenXC<connectTimer, ConnectTimer> extends IOIOActivity   {
 	   	loadRGB565();    	
 	   	matrix_.frame(frame_); 
 	   }
-//  	private void writeSuddenBrakeImage() throws ConnectionLostException {
-//		   	 BitmapInputStream = getResources().openRawResource(R.raw.rapid_brake); //load a blank image to clear it
-//		   	 loadRGB565();    	
-//		   	 matrix_.frame(frame_); 
-//		   }
-//	
+
 	///*********** Vehicle Service and Binds*****************////
 	
 	private ServiceConnection mConnection = new ServiceConnection() {
@@ -275,8 +262,6 @@ public class PixelOpenXC<connectTimer, ConnectTimer> extends IOIOActivity   {
 		        PixelOpenXC.this.runOnUiThread(new Runnable() {
 		            public void run() {
 		            	String speedString = String.format("%.1f", speed);	
-		               //mVehicleSpeedView.setText(
-		                   // "Vehicle speed (mp/h): " + _speed.getValue().doubleValue());
 		            	 mVehicleSpeedView.setText("Vehicle speed (mph): " + speedString);
 		            }
 		        });
@@ -285,6 +270,7 @@ public class PixelOpenXC<connectTimer, ConnectTimer> extends IOIOActivity   {
 	    }
 	};
 	
+	
 	BrakePedalStatus.Listener mBrakeListener = new BrakePedalStatus.Listener() {
 		String last_brakeStatus = "";
 	    public void receive(Measurement measurement) {
@@ -292,75 +278,17 @@ public class PixelOpenXC<connectTimer, ConnectTimer> extends IOIOActivity   {
         	final boolean brakesBoolean = _brakeStatus.getValue().booleanValue();
         	if(_brakeStatus.toString() != last_brakeStatus) {
 		        PixelOpenXC.this.runOnUiThread(new Runnable() {
-		            public void run() {
+		        public void run() {
 		            	mVehicleBrakeView.setText(_brakeStatus.toString());
-		            	     	
-		            	//mVehicleBrakeView.setText(
-		            	// 	"Brake: " + _brakeStatus.getValue().booleanValue());
-		            	
-		            	//Log.w("openxc", "current priority " + currentPriority); 
-	//	            	
-	//	            	if (brakePriority >= currentPriority && pixelFound == 1) { 
-	//	            		
-	//	            		if (pedalTimerRunning == 1) { //now let's check if the timer is running and start it if not
-	//	            			//pedalTimer.cancel();
-	//	            			_pedalTimer.cancel();
-	//	            			pedalTimerRunning = 0;
-	//	            			Log.w("openxc", "brake killed the pedal timer"); 
-	//	            		}
-	//	            		
-	//	            		//pedalTimer.cancel(); //stop the timer
-	//	            		//pedalTimerRunning = 0;
-	//	            		
-	//	            		boolean breakValue = _brakeStatus.getValue().booleanValue();
-	//	            		if (breakValue == true ) {
-	////	            		if (brakesBoolean == true){	
-	//	            			currentPriority = brakePriority;
-	//	            			Log.w("openxc", "brake was true"); 
-	//	            			Log.w("openxc", "Speed Delta: " + speedDelta);
-	//	            			if (speedDelta > 2) {
-	//	            				try {
-	//	            					writeSuddenBrakeImage();  //we'll need to add some code here to hold this image as well for the sudden brake acceleration
-	//								} catch (ConnectionLostException e) {
-	//									// TODO Auto-generated catch block
-	//									e.printStackTrace();
-	//								}
-	//	            			}
-	//	            			else {
-	//	            				try {
-	//		            				writeBrakeImage();
-	//								} catch (ConnectionLostException e) {
-	//									// TODO Auto-generated catch block
-	//									e.printStackTrace();
-	//								}
-	//	            			}
-	//			            		
-	//	            			
-	//	            		}
-	//	            		else {
-	//	            			 
-	//	            			Log.w("openxc", "brake was false"); 
-	//	            			 currentPriority = 0;
-	//	            			// try {
-	//							 try {
-	//								clearMatrixImage();
-	//							} catch (ConnectionLostException e) {
-	//								// TODO Auto-generated catch block
-	//								e.printStackTrace();
-	//							}
-	//	            		}
-	//	            		 
-	////	            		 Log.w("openxc", breakValue); 
-	//	            		
-	//	            	}
 		            }
 		        });
 	        	new Thread(new Runnable() {
 	        		public void run() {
+	        			//we decide whether or not to put up a brake image and when to clear it.
 		            	if (brakesBoolean == true) {
 		            		try {
 		            			if(matrix_ != null) {
-		            				writeBrakeImage();  //we'll need to add some code here to hold this image as well for the sudden brake acceleration
+		            				writeBrakeImage();  
 		            			}
 							} catch (ConnectionLostException e) {
 								// TODO Auto-generated catch block
