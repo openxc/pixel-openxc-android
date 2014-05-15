@@ -7,35 +7,20 @@ import ioio.lib.util.android.IOIOActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.ByteBuffer;
 import java.util.Arrays;
-import java.util.Timer;
 
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.util.Log;
-//import android.view.WindowManager;
 import android.widget.TextView;
 
-
-
-
-//import com.ledpixelart.pixelopenxc.MainActivity.ConnectTimer;
 import com.openxc.VehicleManager;
 import com.openxc.measurements.BrakePedalStatus;
 import com.openxc.measurements.Measurement;
@@ -43,43 +28,27 @@ import com.openxc.measurements.UnrecognizedMeasurementTypeException;
 import com.openxc.measurements.VehicleSpeed;
 import com.openxc.remote.VehicleServiceException;
 
-import android.content.pm.PackageManager.NameNotFoundException;
-//import com.openxc.measurements.VehicleSpeed;
 
 public class PixelOpenXC<connectTimer, ConnectTimer> extends IOIOActivity   {
 
    	private ioio.lib.api.RgbLedMatrix.Matrix KIND;  //have to do it this way because there is a matrix library conflict
-	private android.graphics.Matrix matrix2;
   	private short[] frame_ = new short[512];
   	public static final Bitmap.Config FAST_BITMAP_CONFIG = Bitmap.Config.RGB_565;
   	private byte[] BitmapBytes;
   	private Bitmap canvasBitmap;
-  	private Bitmap originalImage;
-  	private int width_original;
-  	private int height_original; 	  
-  	private float scaleWidth; 
-  	private float scaleHeight; 	  	
+  	private Bitmap originalImage;  	
   	private Bitmap resizedBitmap;  	
 	private int resizedFlag = 0;
 	
 	private VehicleManager mVehicleManager;
 	private TextView mVehicleBrakeView;
 	private TextView mVehicleSpeedView;
-	private int brakePriority = 3;
-    private int currentPriority = 0;
     private int pixelFound = 0; 
-//    private int pedalTimerRunning = 0;
-//    private Timer _pedalTimer;
-//    private double speedDelta;
     private InputStream BitmapInputStream;
     private ioio.lib.api.RgbLedMatrix matrix_;
     
-    private ConnectTimer connectTimer; 
-    private int matrix_model;
-    private Resources resources = null;
-	private SharedPreferences prefs;
-	private String app_ver;
-	protected static final String tag = "openxc";
+    private ConnectTimer connectTimer;
+    protected static final String tag = "openxc";
     
 	
     @Override
@@ -95,22 +64,13 @@ public class PixelOpenXC<connectTimer, ConnectTimer> extends IOIOActivity   {
             Intent intent = new Intent(this, VehicleManager.class);
             bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
         }
-
- 		resources = this.getResources();
  		setPreferences();
- 		
- 		this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
     }
     
     private void setPreferences()
     {
-     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this); 
-     matrix_model = Integer.valueOf(prefs.getString(   
-    	        resources.getString(R.string.selected_matrix),
-    	        resources.getString(R.string.matrix_default_value)));     		 
      KIND = ioio.lib.api.RgbLedMatrix.Matrix.SEEEDSTUDIO_32x32; //v2 as the default, it has 2 IDC connectors
      BitmapInputStream = getResources().openRawResource(R.raw.openxcgrey);
-//     }
      frame_ = new short [KIND.width * KIND.height];
 	 BitmapBytes = new byte[KIND.width * KIND.height *2]; //512 * 2 = 1024 or 1024 * 2 = 2048
 	 
@@ -215,7 +175,8 @@ public class PixelOpenXC<connectTimer, ConnectTimer> extends IOIOActivity   {
 ////************ Create Images to be displayed on the Board ********************/////
   	private void clearMatrixImage() throws ConnectionLostException {
   		//let's clear the image
-		BitmapInputStream = getResources().openRawResource(R.raw.blank); //load a blank image to clear it
+//		BitmapInputStream = getResources().openRawResource(R.raw.blank); //load a blank image to clear it
+		BitmapInputStream = getResources().openRawResource(R.raw.openxcgrey);
 		loadRGB565();
 		matrix_.frame(frame_);
   	}  
