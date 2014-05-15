@@ -1,7 +1,7 @@
-PixelOpenXC - HelloWord
-=====================
+PixelOpenXC 
+============
 
-A very simple application that connects the [pixel board](http://ledpixelart.com) and [openxc](http://openxcplatform.com) 
+A very simple application that shows a brake image on the [pixel board](http://ledpixelart.com) and utilizes [openxc](http://openxcplatform.com) to get the data from the vehicle
 
 ## Dependencies
 
